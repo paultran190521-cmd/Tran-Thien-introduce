@@ -4,7 +4,7 @@ import {
   CheckCircle2, Mail, Phone, ArrowRight, MousePointer2, Clock, 
   ShieldCheck, ChevronDown, Facebook, Linkedin, Instagram, BookOpen,
   Youtube, ShoppingCart, ExternalLink, MessageSquare,
-  Quote, Star, Brain, RefreshCw, Activity, Zap
+  Quote, Star, Brain, RefreshCw, Activity, Zap, X
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
@@ -36,6 +36,7 @@ export default function App() {
   const [scrolled, setScrolled] = useState(false);
   const [currentQuoteIdx, setCurrentQuoteIdx] = useState(0);
   const [heroImage, setHeroImage] = useState('');
+  const [showPrivacyPolicy, setShowPrivacyPolicy] = useState(false);
 
   useEffect(() => {
     const fetchConfig = async () => {
@@ -755,7 +756,7 @@ export default function App() {
               <li><button onClick={() => scrollToSection('about')} className="hover:text-primary transition-colors">Câu chuyện của tôi</button></li>
               <li><button onClick={() => scrollToSection('tools')} className="hover:text-primary transition-colors">Bộ công cụ đo lường</button></li>
               <li><button onClick={() => scrollToSection('services')} className="hover:text-primary transition-colors">Dịch vụ tham vấn</button></li>
-              <li><button className="hover:text-primary transition-colors">Chính sách bảo mật</button></li>
+              <li><button onClick={() => setShowPrivacyPolicy(true)} className="hover:text-primary transition-colors">Chính sách bảo mật</button></li>
             </ul>
           </div>
           
@@ -792,6 +793,107 @@ export default function App() {
           Chat qua Zalo
         </span>
       </a>
+
+      {/* Privacy Policy Modal */}
+      <AnimatePresence>
+        {showPrivacyPolicy && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] bg-dark/60 backdrop-blur-sm flex items-center justify-center p-4 md:p-6"
+            onClick={() => setShowPrivacyPolicy(false)}
+          >
+            <motion.div 
+              initial={{ scale: 0.95, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.95, opacity: 0, y: 20 }}
+              onClick={(e) => e.stopPropagation()}
+              className="bg-white w-full max-w-3xl max-h-[85vh] rounded-[2rem] shadow-2xl flex flex-col overflow-hidden relative"
+            >
+              {/* Modal Header */}
+              <div className="px-8 py-6 border-b border-dark/5 flex items-center justify-between bg-light/50 shrink-0">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center text-primary">
+                    <ShieldCheck size={24} />
+                  </div>
+                  <h3 className="font-display text-2xl font-bold text-dark">Chính sách bảo mật</h3>
+                </div>
+                <button 
+                  onClick={() => setShowPrivacyPolicy(false)}
+                  className="w-10 h-10 bg-dark/5 hover:bg-dark/10 rounded-full flex items-center justify-center text-dark/60 hover:text-dark transition-colors"
+                >
+                  <X size={20} />
+                </button>
+              </div>
+
+              {/* Modal Content */}
+              <div className="p-8 overflow-y-auto custom-scrollbar text-dark/70 space-y-8">
+                <div className="space-y-4">
+                  <p className="text-lg leading-relaxed font-medium text-dark">
+                    Tại Systemic Soul (Trần Thiện), việc bảo vệ sự riêng tư và an toàn thông tin cá nhân của bạn là ưu tiên hàng đầu, đặc biệt trong lĩnh vực tham vấn tâm lý và phát triển cá nhân.
+                  </p>
+                </div>
+
+                <div className="space-y-4">
+                  <h4 className="font-display text-xl font-bold text-dark flex items-center gap-2">
+                    <span className="w-6 h-6 rounded-full bg-primary/10 text-primary flex items-center justify-center text-sm">1</span>
+                    Bảo mật tuyệt đối phiên tham vấn
+                  </h4>
+                  <p className="leading-relaxed pl-8">
+                    Mọi thông tin, câu chuyện và vấn đề bạn chia sẻ trong các phiên tham vấn 1:1 đều được giữ <strong>bí mật tuyệt đối</strong> theo tiêu chuẩn đạo đức nghề nghiệp tâm lý học. Chúng tôi cam kết không ghi âm, ghi hình hay tiết lộ nội dung tham vấn cho bất kỳ bên thứ ba nào nếu không có sự đồng ý bằng văn bản của bạn (trừ trường hợp liên quan đến an toàn tính mạng theo quy định của pháp luật).
+                  </p>
+                </div>
+
+                <div className="space-y-4">
+                  <h4 className="font-display text-xl font-bold text-dark flex items-center gap-2">
+                    <span className="w-6 h-6 rounded-full bg-primary/10 text-primary flex items-center justify-center text-sm">2</span>
+                    Thu thập & Sử dụng thông tin
+                  </h4>
+                  <p className="leading-relaxed pl-8">
+                    Hệ thống chỉ thu thập các thông tin cơ bản (Họ tên, Số điện thoại, Email, Lời nhắn) thông qua biểu mẫu đặt lịch nhằm mục đích:
+                  </p>
+                  <ul className="list-disc pl-12 space-y-2">
+                    <li>Liên hệ để sắp xếp lịch hẹn tham vấn.</li>
+                    <li>Gửi các tài liệu, công cụ (Dashboard, Template) mà bạn đã đăng ký.</li>
+                    <li>Chuẩn bị tốt nhất cho phiên làm việc dựa trên lời nhắn sơ bộ của bạn.</li>
+                  </ul>
+                </div>
+
+                <div className="space-y-4">
+                  <h4 className="font-display text-xl font-bold text-dark flex items-center gap-2">
+                    <span className="w-6 h-6 rounded-full bg-primary/10 text-primary flex items-center justify-center text-sm">3</span>
+                    Cam kết không chia sẻ dữ liệu
+                  </h4>
+                  <p className="leading-relaxed pl-8">
+                    Dữ liệu cá nhân của bạn được lưu trữ an toàn trên hệ thống nội bộ (Google Workspace). Chúng tôi cam kết <strong>KHÔNG bán, trao đổi hay chia sẻ</strong> thông tin cá nhân của bạn cho bất kỳ bên thứ ba nào vì mục đích thương mại hay quảng cáo.
+                  </p>
+                </div>
+
+                <div className="space-y-4">
+                  <h4 className="font-display text-xl font-bold text-dark flex items-center gap-2">
+                    <span className="w-6 h-6 rounded-full bg-primary/10 text-primary flex items-center justify-center text-sm">4</span>
+                    Quyền lợi của bạn
+                  </h4>
+                  <p className="leading-relaxed pl-8">
+                    Bạn hoàn toàn có quyền yêu cầu xem lại, chỉnh sửa hoặc <strong>xóa vĩnh viễn</strong> toàn bộ hồ sơ thông tin cá nhân và lịch sử làm việc của mình khỏi hệ thống của chúng tôi bất cứ lúc nào bằng cách gửi email yêu cầu tới contact@systemicsoul.com.
+                  </p>
+                </div>
+              </div>
+              
+              {/* Modal Footer */}
+              <div className="px-8 py-6 border-t border-dark/5 bg-light/50 shrink-0 flex justify-end">
+                <button 
+                  onClick={() => setShowPrivacyPolicy(false)}
+                  className="bg-dark text-white px-8 py-3 rounded-xl font-bold hover:bg-primary transition-colors active:scale-95"
+                >
+                  Đã hiểu & Đóng
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
