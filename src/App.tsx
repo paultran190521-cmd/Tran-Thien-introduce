@@ -35,7 +35,7 @@ export default function App() {
   const [bookingStatus, setBookingStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
   const [scrolled, setScrolled] = useState(false);
   const [currentQuoteIdx, setCurrentQuoteIdx] = useState(0);
-  const [heroImage, setHeroImage] = useState('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=800');
+  const [heroImage, setHeroImage] = useState('');
 
   useEffect(() => {
     const fetchConfig = async () => {
@@ -217,12 +217,18 @@ export default function App() {
           >
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[110%] h-[110%] bg-gradient-to-tr from-primary/10 to-secondary/10 rounded-full blur-3xl -z-10"></div>
             <div className="relative z-10 w-full max-w-[420px] aspect-[4/5] bg-dark rounded-[2.5rem] overflow-hidden shadow-2xl border-8 border-white rotate-2 hover:rotate-0 transition-transform duration-500 group">
-               <img 
-                 src={heroImage} 
-                 alt="Chuyên gia Trần Thiện" 
-                 className="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity duration-500 group-hover:scale-105"
-                 referrerPolicy="no-referrer"
-               />
+               {heroImage ? (
+                 <img 
+                   src={heroImage} 
+                   alt="Chuyên gia Trần Thiện" 
+                   className="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity duration-500 group-hover:scale-105"
+                   referrerPolicy="no-referrer"
+                 />
+               ) : (
+                 <div className="w-full h-full bg-dark/50 animate-pulse flex items-center justify-center">
+                   <div className="w-10 h-10 border-4 border-white/20 border-t-white/80 rounded-full animate-spin"></div>
+                 </div>
+               )}
                <div className="absolute inset-0 bg-gradient-to-t from-dark/80 via-transparent to-transparent"></div>
                <div className="absolute bottom-8 left-8 right-8 text-white">
                  <p className="font-display font-bold text-2xl mb-1">Chuyên gia của bạn</p>
@@ -375,10 +381,10 @@ export default function App() {
             variants={staggerContainer} initial="initial" whileInView="whileInView"
           >
             {[
-              { title: "Resource Optimizer Template", desc: "Công cụ quản trị thời gian và năng lượng, giúp bạn thoát khỏi trạng thái quá tải.", price: "299.000đ", icon: <Clock size={24} className="text-secondary" /> },
-              { title: "Trắc nghiệm Sức mạnh Nội tại", desc: "Bài test khoa học giúp nhận diện nguồn lực hiện có để tối ưu hóa lộ trình phát triển.", price: "Miễn phí", icon: <Target size={24} className="text-primary" /> },
-              { title: "Habit Tracker Pro", desc: "Bảng theo dõi thói quen dựa trên khoa học hành vi, tích hợp gamification.", price: "199.000đ", icon: <CheckCircle2 size={24} className="text-primary" /> },
-              { title: "Emotion Journaling Kit", desc: "Bộ template viết nhật ký cảm xúc giúp giải tỏa căng thẳng và tự nhận thức.", price: "149.000đ", icon: <BookOpen size={24} className="text-secondary" /> }
+              { title: "Resource Optimizer Template", desc: "Công cụ quản trị thời gian và năng lượng, giúp bạn thoát khỏi trạng thái quá tải.", icon: <Clock size={24} className="text-secondary" /> },
+              { title: "Trắc nghiệm Sức mạnh Nội tại", desc: "Bài test khoa học giúp nhận diện nguồn lực hiện có để tối ưu hóa lộ trình phát triển.", icon: <Target size={24} className="text-primary" /> },
+              { title: "Habit Tracker Pro", desc: "Bảng theo dõi thói quen dựa trên khoa học hành vi, tích hợp gamification.", icon: <CheckCircle2 size={24} className="text-primary" /> },
+              { title: "Emotion Journaling Kit", desc: "Bộ template viết nhật ký cảm xúc giúp giải tỏa căng thẳng và tự nhận thức.", icon: <BookOpen size={24} className="text-secondary" /> }
             ].map((tool, idx) => (
               <motion.div key={idx} variants={fadeIn} className="bg-white p-8 rounded-[2rem] border border-dark/5 shadow-sm hover:shadow-xl transition-all duration-300 group flex flex-col h-full">
                 <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-6 ${idx % 2 === 0 ? 'bg-primary/10' : 'bg-secondary/10'}`}>
@@ -386,10 +392,9 @@ export default function App() {
                 </div>
                 <h3 className="font-display text-xl font-bold mb-3 text-dark group-hover:text-primary transition-colors">{tool.title}</h3>
                 <p className="text-dark/60 text-sm leading-relaxed mb-8 flex-grow">{tool.desc}</p>
-                <div className="flex items-center justify-between mt-auto pt-6 border-t border-dark/5">
-                  <span className="font-display font-bold text-lg text-dark">{tool.price}</span>
-                  <button className="bg-dark text-white px-5 py-2.5 rounded-xl text-sm font-bold hover:bg-primary transition-colors flex items-center gap-2 active:scale-95">
-                    Mua ngay <ShoppingCart size={16} />
+                <div className="mt-auto pt-6 border-t border-dark/5">
+                  <button onClick={() => scrollToSection('booking')} className="w-full bg-dark text-white px-5 py-3 rounded-xl text-sm font-bold hover:bg-primary transition-colors flex items-center justify-center gap-2 active:scale-95">
+                    Liên hệ ngay <ArrowRight size={16} />
                   </button>
                 </div>
               </motion.div>
@@ -618,7 +623,7 @@ export default function App() {
                     </div>
                     <div>
                       <p className="text-xs text-white/60 uppercase tracking-wider font-bold mb-1">Hotline</p>
-                      <p className="font-medium">090 123 4567</p>
+                      <p className="font-medium">035 877 2702</p>
                     </div>
                   </div>
                 </div>
