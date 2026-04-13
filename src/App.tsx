@@ -571,10 +571,10 @@ export default function App() {
             {/* Service 2 */}
             <motion.div variants={fadeIn} className="bg-white/5 backdrop-blur-md p-10 md:p-12 rounded-[3rem] border border-white/10 hover:bg-white/10 transition-colors">
               <Settings className="text-secondary mb-8" size={48} />
-              <h3 className="font-display text-3xl font-bold mb-4 text-white">Thiết kế công cụ cá nhân hóa</h3>
-              <p className="text-white/60 mb-10 leading-relaxed text-lg">Xây dựng hệ thống quản trị cá nhân (Notion, Sheets, Apps) giúp bạn gia tăng hiệu suất công việc và cải thiện chất lượng đời sống.</p>
+              <h3 className="font-display text-3xl font-bold mb-4 text-white">Thiết kế công cụ hỗ trợ tâm lý</h3>
+              <p className="text-white/60 mb-10 leading-relaxed text-lg">Xây dựng hệ thống theo dõi và quản trị tâm lý (Notion, Sheets) giúp bạn nhận thức cảm xúc, duy trì thói quen lành mạnh và tự chữa lành.</p>
               <ul className="space-y-5 mb-12">
-                {['Phân tích luồng công việc (Workflow)', 'Thiết kế Dashboard cá nhân', 'Tự động hóa tác vụ lặp lại', 'Hướng dẫn sử dụng & bàn giao'].map((li, i) => (
+                {['Phân tích mô thức hành vi & cảm xúc', 'Thiết kế Dashboard sức khỏe tinh thần', 'Hệ thống hóa bài tập tâm lý & thói quen', 'Đồng hành ứng dụng vào thực tế'].map((li, i) => (
                   <li key={i} className="flex items-center gap-4 text-white/80 font-medium">
                     <CheckCircle2 size={20} className="text-secondary shrink-0" /> {li}
                   </li>
@@ -683,7 +683,7 @@ export default function App() {
                     onChange={(e) => setFormData({...formData, service: e.target.value})}
                   >
                     <option value="Tham vấn tâm lý 1-1">Tham vấn tâm lý 1-1</option>
-                    <option value="Thiết kế công cụ cá nhân hóa">Thiết kế công cụ cá nhân hóa</option>
+                    <option value="Thiết kế công cụ hỗ trợ tâm lý">Thiết kế công cụ hỗ trợ tâm lý</option>
                   </select>
                 </div>
                 <div className="space-y-2">
