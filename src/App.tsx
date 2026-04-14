@@ -36,6 +36,8 @@ export default function App() {
   const [scrolled, setScrolled] = useState(false);
   const [currentQuoteIdx, setCurrentQuoteIdx] = useState(0);
   const [heroImage, setHeroImage] = useState('');
+  const [contactEmail, setContactEmail] = useState('infoasst@sunnycare.vn');
+  const [contactPhone, setContactPhone] = useState('089 639 7968');
   const [showPrivacyPolicy, setShowPrivacyPolicy] = useState(false);
 
   useEffect(() => {
@@ -55,8 +57,10 @@ export default function App() {
         }
         
         const result = await response.json();
-        if (result.status === 'success' && result.data && result.data.HeroImage) {
-          setHeroImage(result.data.HeroImage);
+        if (result.status === 'success' && result.data) {
+          if (result.data.HeroImage) setHeroImage(result.data.HeroImage);
+          if (result.data.Email) setContactEmail(result.data.Email);
+          if (result.data.Phone) setContactPhone(result.data.Phone);
         }
       } catch (error) {
         console.error('Lỗi khi tải cấu hình:', error);
@@ -146,7 +150,7 @@ export default function App() {
             <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white font-display font-bold text-xl shadow-lg shadow-primary/20">
               T
             </div>
-            <span className="font-display font-bold text-dark text-xl hidden sm:block tracking-tight">Trần Thiện</span>
+            <span className="font-display font-bold text-dark text-xl hidden sm:block tracking-tight">Trần Thiện - Psychologist</span>
           </div>
           
           <div className="flex items-center gap-2 md:gap-8 overflow-x-auto no-scrollbar">
@@ -221,7 +225,7 @@ export default function App() {
                {heroImage ? (
                  <img 
                    src={heroImage} 
-                   alt="Chuyên gia Trần Thiện" 
+                   alt="Chuyên gia Trần Thiện - Psychologist" 
                    className="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity duration-500 group-hover:scale-105"
                    referrerPolicy="no-referrer"
                  />
@@ -233,7 +237,7 @@ export default function App() {
                <div className="absolute inset-0 bg-gradient-to-t from-dark/80 via-transparent to-transparent"></div>
                <div className="absolute bottom-8 left-8 right-8 text-white">
                  <p className="font-display font-bold text-2xl mb-1">Trợ lý tinh thần của bạn</p>
-                 <p className="text-white/80 text-sm">Trần Thiện</p>
+                 <p className="text-white/80 text-sm">Trần Thiện - Psychologist</p>
                </div>
             </div>
           </motion.div>
@@ -528,7 +532,7 @@ export default function App() {
                     </div>
                     <div>
                       <p className="text-xs text-white/60 uppercase tracking-wider font-bold mb-1">Email</p>
-                      <p className="font-medium">infoasst@sunnycare.vn</p>
+                      <p className="font-medium">{contactEmail}</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-4">
@@ -537,7 +541,7 @@ export default function App() {
                     </div>
                     <div>
                       <p className="text-xs text-white/60 uppercase tracking-wider font-bold mb-1">Hotline</p>
-                      <p className="font-medium">089 639 7968</p>
+                      <p className="font-medium">{contactPhone}</p>
                     </div>
                   </div>
                 </div>
@@ -656,7 +660,7 @@ export default function App() {
           <div className="md:col-span-5 space-y-6">
             <div className="flex items-center gap-3">
               <div className="w-12 h-12 bg-primary rounded-xl flex items-center justify-center text-white font-display font-bold text-2xl">T</div>
-              <span className="font-display font-bold text-2xl tracking-tight">Trần Thiện</span>
+              <span className="font-display font-bold text-2xl tracking-tight">Trần Thiện - Psychologist</span>
             </div>
             <p className="text-white/60 text-base leading-relaxed max-w-sm">
               Kết hợp sự thấu cảm của tâm lý học và sự chính xác của hệ thống để kiến tạo một phiên bản tối ưu hơn của chính bạn.
@@ -686,13 +690,13 @@ export default function App() {
         </div>
         
         <div className="max-w-6xl mx-auto px-6 mt-20 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-center items-center gap-4 text-white/40 text-sm text-center font-medium">
-          <p>© {new Date().getFullYear()} Trần Thiện. Designed for Performance & Empathy.</p>
+          <p>© {new Date().getFullYear()} Trần Thiện - Psychologist. Designed for Performance & Empathy.</p>
         </div>
       </footer>
 
       {/* Floating Zalo Chat */}
       <a 
-        href="https://zalo.me/84896397968" 
+        href={`https://zalo.me/${contactPhone.replace(/\s+/g, '').replace(/^0/, '84')}`} 
         target="_blank" 
         rel="noopener noreferrer"
         className="fixed bottom-8 right-8 z-50 group"
@@ -702,7 +706,7 @@ export default function App() {
           <MessageSquare size={24} />
         </div>
         <span className="absolute right-full mr-4 top-1/2 -translate-y-1/2 bg-dark text-white text-xs font-bold px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
-          Zalo - 089 639 7968
+          Zalo - {contactPhone}
         </span>
       </a>
 
@@ -788,7 +792,7 @@ export default function App() {
                     Quyền lợi của bạn
                   </h4>
                   <p className="leading-relaxed pl-8">
-                    Bạn hoàn toàn có quyền yêu cầu xem lại, chỉnh sửa hoặc <strong>xóa vĩnh viễn</strong> toàn bộ hồ sơ thông tin cá nhân và lịch sử làm việc của mình khỏi hệ thống của chúng tôi bất cứ lúc nào bằng cách gửi email yêu cầu tới infoasst@sunnycare.vn.
+                    Bạn hoàn toàn có quyền yêu cầu xem lại, chỉnh sửa hoặc <strong>xóa vĩnh viễn</strong> toàn bộ hồ sơ thông tin cá nhân và lịch sử làm việc của mình khỏi hệ thống của chúng tôi bất cứ lúc nào bằng cách gửi email yêu cầu tới {contactEmail}.
                   </p>
                 </div>
               </div>
