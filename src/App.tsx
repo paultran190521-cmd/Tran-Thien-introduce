@@ -150,8 +150,8 @@ export default function App() {
           </div>
           
           <div className="flex items-center gap-2 md:gap-8 overflow-x-auto no-scrollbar">
-            {['Về tôi', 'Lý do', 'Dịch vụ', 'Cửa hàng', 'Góc chia sẻ'].map((item, idx) => {
-              const ids = ['about', 'why-me', 'services', 'tools', 'content'];
+            {['Về tôi', 'Lý do', 'Dịch vụ', 'Công cụ'].map((item, idx) => {
+              const ids = ['about', 'why-me', 'services', 'tools'];
               return (
                 <button 
                   key={idx}
@@ -232,8 +232,8 @@ export default function App() {
                )}
                <div className="absolute inset-0 bg-gradient-to-t from-dark/80 via-transparent to-transparent"></div>
                <div className="absolute bottom-8 left-8 right-8 text-white">
-                 <p className="font-display font-bold text-2xl mb-1">Chuyên gia của bạn</p>
-                 <p className="text-white/80 text-sm">Systemic Psychologist</p>
+                 <p className="font-display font-bold text-2xl mb-1">Trợ lý tinh thần của bạn</p>
+                 <p className="text-white/80 text-sm">Trần Thiện</p>
                </div>
             </div>
           </motion.div>
@@ -371,7 +371,7 @@ export default function App() {
             variants={fadeIn} initial="initial" whileInView="whileInView"
           >
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary/10 text-secondary text-xs font-bold border border-secondary/20 uppercase tracking-wider mb-4">
-              <ShoppingCart size={16} /> Cửa hàng công cụ
+              <ShoppingCart size={16} /> Công cụ
             </div>
             <h2 className="font-display text-4xl md:text-5xl font-bold text-dark tracking-tight">Hệ thống Đo lường & Thực hành</h2>
             <p className="text-dark/60 max-w-2xl mx-auto text-lg">Các công cụ số hóa được thiết kế sẵn giúp bạn tối ưu hóa hiệu suất và quản trị cuộc sống ngay lập tức.</p>
@@ -401,93 +401,6 @@ export default function App() {
               </motion.div>
             ))}
           </motion.div>
-        </div>
-      </section>
-
-      {/* Content Hub Section (Articles & Videos) */}
-      <section id="content" className="py-24 bg-white relative overflow-hidden">
-        <div className="max-w-6xl mx-auto px-6">
-          <motion.div 
-            className="text-center mb-16 space-y-4"
-            variants={fadeIn} initial="initial" whileInView="whileInView"
-          >
-            <h2 className="font-display text-4xl md:text-5xl font-bold text-dark tracking-tight">Góc chia sẻ chuyên sâu</h2>
-            <p className="text-dark/60 max-w-2xl mx-auto text-lg">Kiến thức tâm lý học ứng dụng và tư duy hệ thống dành cho bạn.</p>
-          </motion.div>
-
-          <div className="grid lg:grid-cols-12 gap-12">
-            {/* YouTube Section */}
-            <motion.div 
-              className="lg:col-span-5 space-y-6"
-              initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }}
-            >
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-12 bg-red-500/10 rounded-2xl flex items-center justify-center text-red-500">
-                  <Youtube size={24} />
-                </div>
-                <div>
-                  <h3 className="font-display text-2xl font-bold text-dark">Video mới nhất</h3>
-                  <p className="text-sm text-dark/60">Từ kênh YouTube Systemic Soul</p>
-                </div>
-              </div>
-              
-              <div className="bg-dark rounded-[2rem] p-2 shadow-xl relative group overflow-hidden">
-                <div className="aspect-video bg-dark/50 rounded-[1.5rem] overflow-hidden relative">
-                  <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&q=80&w=800" alt="YouTube Thumbnail" className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500 group-hover:scale-105" referrerPolicy="no-referrer" />
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center text-white shadow-lg shadow-red-600/30 group-hover:scale-110 transition-transform">
-                      <div className="w-0 h-0 border-t-[10px] border-t-transparent border-l-[16px] border-l-white border-b-[10px] border-b-transparent ml-1"></div>
-                    </div>
-                  </div>
-                </div>
-                <div className="p-6">
-                  <h4 className="font-bold text-white text-lg mb-2 line-clamp-2">Làm thế nào để thiết lập hệ thống quản lý thời gian không gây áp lực?</h4>
-                  <p className="text-white/60 text-sm mb-4">Khám phá cách ứng dụng tư duy hệ thống vào việc sắp xếp lịch trình cá nhân...</p>
-                  <a href="#" className="inline-flex items-center gap-2 text-red-400 text-sm font-bold hover:text-red-300 transition-colors">
-                    Đăng ký kênh <ExternalLink size={16} />
-                  </a>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Articles Section */}
-            <motion.div 
-              className="lg:col-span-7"
-              variants={staggerContainer} initial="initial" whileInView="whileInView"
-            >
-              <div className="flex items-center justify-between mb-8">
-                <h3 className="font-display text-2xl font-bold text-dark">Bài viết chuyên sâu</h3>
-                <a href="#" className="text-sm font-bold text-primary hover:text-primary-hover flex items-center gap-1">Xem tất cả <ArrowRight size={16} /></a>
-              </div>
-              
-              <div className="space-y-6">
-                {[
-                  { title: "Tâm lý học đằng sau sự trì hoãn và cách hệ thống hóa để vượt qua", category: "Tâm lý học", date: "12/04/2026", img: "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?auto=format&fit=crop&q=80&w=400" },
-                  { title: "Tại sao To-do list truyền thống không hoạt động với người làm sáng tạo?", category: "Hiệu suất", date: "05/04/2026", img: "https://images.unsplash.com/photo-1512314889357-e157c22f938d?auto=format&fit=crop&q=80&w=400" },
-                  { title: "Xây dựng ranh giới cá nhân: Góc nhìn từ lý thuyết hệ thống", category: "Phát triển bản thân", date: "28/03/2026", img: "https://images.unsplash.com/photo-1499209974431-9dddcece7f88?auto=format&fit=crop&q=80&w=400" }
-                ].map((article, idx) => (
-                  <motion.a 
-                    href="#" 
-                    key={idx} 
-                    variants={fadeIn}
-                    className="flex flex-col sm:flex-row gap-6 p-4 rounded-[2rem] hover:bg-light transition-colors group border border-transparent hover:border-dark/5"
-                  >
-                    <div className="w-full sm:w-40 aspect-[4/3] rounded-2xl overflow-hidden shrink-0">
-                      <img src={article.img} alt={article.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" referrerPolicy="no-referrer" />
-                    </div>
-                    <div className="flex flex-col justify-center">
-                      <div className="flex items-center gap-3 mb-2">
-                        <span className="text-xs font-bold text-secondary uppercase tracking-wider">{article.category}</span>
-                        <span className="text-xs text-dark/40">{article.date}</span>
-                      </div>
-                      <h4 className="font-display font-bold text-lg text-dark group-hover:text-primary transition-colors mb-2 line-clamp-2">{article.title}</h4>
-                      <p className="text-sm text-dark/60 flex items-center gap-1 font-medium">Đọc tiếp trên Medium <ExternalLink size={14} /></p>
-                    </div>
-                  </motion.a>
-                ))}
-              </div>
-            </motion.div>
-          </div>
         </div>
       </section>
 
@@ -570,18 +483,18 @@ export default function App() {
 
             {/* Service 2 */}
             <motion.div variants={fadeIn} className="bg-white/5 backdrop-blur-md p-10 md:p-12 rounded-[3rem] border border-white/10 hover:bg-white/10 transition-colors">
-              <Settings className="text-secondary mb-8" size={48} />
-              <h3 className="font-display text-3xl font-bold mb-4 text-white">Thiết kế công cụ hỗ trợ tâm lý</h3>
-              <p className="text-white/60 mb-10 leading-relaxed text-lg">Xây dựng hệ thống theo dõi và quản trị tâm lý (Notion, Sheets) giúp bạn nhận thức cảm xúc, duy trì thói quen lành mạnh và tự chữa lành.</p>
+              <Target className="text-secondary mb-8" size={48} />
+              <h3 className="font-display text-3xl font-bold mb-4 text-white">Các lĩnh vực tham vấn tâm lý</h3>
+              <p className="text-white/60 mb-10 leading-relaxed text-lg">Đồng hành cùng bạn giải quyết các vấn đề tâm lý chuyên sâu, giúp bạn thấu hiểu bản thân và xây dựng cuộc sống ý nghĩa hơn.</p>
               <ul className="space-y-5 mb-12">
-                {['Phân tích mô thức hành vi & cảm xúc', 'Thiết kế Dashboard sức khỏe tinh thần', 'Hệ thống hóa bài tập tâm lý & thói quen', 'Đồng hành ứng dụng vào thực tế'].map((li, i) => (
+                {['Định hướng nghề nghiệp', 'Phát triển bản thân', 'Tư vấn hôn nhân gia đình', 'Trợ lý tinh thần - kỹ năng sống'].map((li, i) => (
                   <li key={i} className="flex items-center gap-4 text-white/80 font-medium">
                     <CheckCircle2 size={20} className="text-secondary shrink-0" /> {li}
                   </li>
                 ))}
               </ul>
               <button onClick={() => scrollToSection('booking')} className="w-full py-4 border-2 border-white/20 rounded-2xl font-bold hover:border-white hover:bg-white/5 transition-all active:scale-95">
-                Nhận tư vấn thiết kế
+                Nhận tư vấn ngay
               </button>
             </motion.div>
           </motion.div>
@@ -615,7 +528,7 @@ export default function App() {
                     </div>
                     <div>
                       <p className="text-xs text-white/60 uppercase tracking-wider font-bold mb-1">Email</p>
-                      <p className="font-medium">contact@systemicsoul.com</p>
+                      <p className="font-medium">infoasst@sunnycare.vn</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-4">
@@ -624,7 +537,7 @@ export default function App() {
                     </div>
                     <div>
                       <p className="text-xs text-white/60 uppercase tracking-wider font-bold mb-1">Hotline</p>
-                      <p className="font-medium">035 877 2702</p>
+                      <p className="font-medium">089 639 7968</p>
                     </div>
                   </div>
                 </div>
@@ -683,7 +596,7 @@ export default function App() {
                     onChange={(e) => setFormData({...formData, service: e.target.value})}
                   >
                     <option value="Tham vấn tâm lý 1-1">Tham vấn tâm lý 1-1</option>
-                    <option value="Thiết kế công cụ hỗ trợ tâm lý">Thiết kế công cụ hỗ trợ tâm lý</option>
+                    <option value="Các lĩnh vực tham vấn tâm lý">Các lĩnh vực tham vấn tâm lý</option>
                   </select>
                 </div>
                 <div className="space-y-2">
@@ -772,15 +685,14 @@ export default function App() {
           </div>
         </div>
         
-        <div className="max-w-6xl mx-auto px-6 mt-20 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-white/40 text-sm text-center md:text-left font-medium">
-          <p>© {new Date().getFullYear()} Trần Thiện | Systemic Soul. Designed for Performance & Empathy.</p>
-          <p>Powered by Systemic Thinking.</p>
+        <div className="max-w-6xl mx-auto px-6 mt-20 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-center items-center gap-4 text-white/40 text-sm text-center font-medium">
+          <p>© {new Date().getFullYear()} Trần Thiện. Designed for Performance & Empathy.</p>
         </div>
       </footer>
 
       {/* Floating Zalo Chat */}
       <a 
-        href="//zalo.me/84358772702" 
+        href="https://zalo.me/84896397968" 
         target="_blank" 
         rel="noopener noreferrer"
         className="fixed bottom-8 right-8 z-50 group"
@@ -790,7 +702,7 @@ export default function App() {
           <MessageSquare size={24} />
         </div>
         <span className="absolute right-full mr-4 top-1/2 -translate-y-1/2 bg-dark text-white text-xs font-bold px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
-          Chat qua Zalo
+          Zalo - 089 639 7968
         </span>
       </a>
 
@@ -831,7 +743,7 @@ export default function App() {
               <div className="p-8 overflow-y-auto custom-scrollbar text-dark/70 space-y-8">
                 <div className="space-y-4">
                   <p className="text-lg leading-relaxed font-medium text-dark">
-                    Tại Systemic Soul (Trần Thiện), việc bảo vệ sự riêng tư và an toàn thông tin cá nhân của bạn là ưu tiên hàng đầu, đặc biệt trong lĩnh vực tham vấn tâm lý và phát triển cá nhân.
+                    Việc bảo vệ sự riêng tư và an toàn thông tin cá nhân của bạn là ưu tiên hàng đầu, đặc biệt trong lĩnh vực tham vấn tâm lý và phát triển cá nhân.
                   </p>
                 </div>
 
@@ -876,7 +788,7 @@ export default function App() {
                     Quyền lợi của bạn
                   </h4>
                   <p className="leading-relaxed pl-8">
-                    Bạn hoàn toàn có quyền yêu cầu xem lại, chỉnh sửa hoặc <strong>xóa vĩnh viễn</strong> toàn bộ hồ sơ thông tin cá nhân và lịch sử làm việc của mình khỏi hệ thống của chúng tôi bất cứ lúc nào bằng cách gửi email yêu cầu tới contact@systemicsoul.com.
+                    Bạn hoàn toàn có quyền yêu cầu xem lại, chỉnh sửa hoặc <strong>xóa vĩnh viễn</strong> toàn bộ hồ sơ thông tin cá nhân và lịch sử làm việc của mình khỏi hệ thống của chúng tôi bất cứ lúc nào bằng cách gửi email yêu cầu tới infoasst@sunnycare.vn.
                   </p>
                 </div>
               </div>
